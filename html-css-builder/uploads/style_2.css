@@ -1,0 +1,333 @@
+/* ============================ */
+/* ===== User Styles ===== */
+/* ============================ */
+
+/* ============================ */
+/* ===== Main Table ===== */
+/* ============================ */
+/* Table Container */
+/* ===== Overall Table Container ===== */
+/* Change width and height of the overall table here */
+.tableContainer {
+    width: 90%; /* <-- Adjust table width here */
+    margin: 50px auto 20px auto;
+    border: 1px solid var(--color-border); 
+    box-shadow: 0 3px 12px rgba(0,0,0,0.5);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ===== Header Table ===== */
+.tableContainer > table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    text-align: center;
+    background-color: var(--color-bg-table);
+    color: var(--color-text);
+}
+
+.tableContainer > table th {
+    padding: 12px 16px;
+    border-bottom: 2px solid var(--color-border); /* line below header */
+    border-right: 1px solid var(--color-border);  /* vertical lines */
+    background-color: var(--color-purple);
+    font-weight: 600;
+}
+
+.tableContainer > table th:last-child {
+    border-right: none;
+}
+
+/* ===== Scrollable Body Container ===== */
+/* Change max-height here to adjust vertical scroll area */
+/* ===== Scrollable Body Container ===== */
+/* Height scales dynamically with viewport */
+#tableBodyContainer {
+    max-height: calc(100vh - 300px); /* Adjust based on other page elements */
+    overflow-y: auto;
+    width: 100%;
+    border-top: none;
+    box-sizing: border-box;
+}
+
+#tableBodyContainer::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* ===== Body Table ===== */
+#tableBodyContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: var(--color-bg-table);
+    color: var(--color-text);
+}
+
+/* ===== Body Cells ===== */
+#tableBodyContainer td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--color-border); /* horizontal lines between rows */
+    border-right: 1px solid var(--color-border);  /* vertical lines */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Remove right border for last column */
+#tableBodyContainer td:last-child {
+    border-right: none;
+}
+
+/* Add bottom border to last row for a solid bottom line */
+#tableBodyContainer table tr:last-child td {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* ===== Hover Effects ===== */
+#tableBodyContainer tr {
+    transition: background-color 0.2s ease;
+}
+
+#tableBodyContainer tr:hover {
+    background-color: #3b3f52; /* old hover color */
+    cursor: pointer;
+}
+
+/* ===== Column Widths for Alignment ===== */
+.tableContainer > table th,
+#tableBodyContainer table td {
+    width: 25%; /* adjust based on number of columns */
+}
+
+/* ============================ */
+/* ===== Modal ===== */
+/* ============================ */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(6px);
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-content {
+    background: var(--color-bg-modal);
+    width: 70%;
+    max-width: 90vw;
+    max-height: 80vh;
+    padding: 25px;
+    border-radius: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.close-btn {
+    float: right;
+    background: var(--color-purple);
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.close-btn:hover { filter: brightness(1.2); }
+
+h2#popupName,
+#filterModal h2 {
+    color: var(--color-light-purple);
+    text-align: center;
+    margin-top: 0;
+}
+
+/* Inner popup table */
+.details-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    table-layout: fixed;
+    text-align: left;
+}
+
+.details-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #3b3f52;
+}
+
+.details-table td.label {
+    font-weight: 600;
+    background: #3b3f52;
+    width: 200px;
+    color: var(--color-light-purple);
+}
+
+.details-table td a.manager-link {
+    color: var(--color-text-light);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px dotted #c085ff;
+    cursor: pointer;
+    transition: color 0.2s, border-bottom-color 0.2s;
+}
+
+.details-table td a.manager-link:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+
+
+/* ============================ */
+/* ===== Search Bar ===== */
+/* ============================ */
+#searchInput {
+    display: block;
+    margin-top: 20px;
+    margin-right: 2px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    width: 50%;
+    max-width: 400px;
+    font-size: 16px;
+    border: 1px solid #3b3f52;
+    border-radius: 0;
+    background-color: var(--color-bg-table);
+    color: #fff;
+    outline: none;
+}
+
+#searchInput::placeholder { color: #aaa; }
+
+#noResults {
+    display: none;
+    color: var(--color-accent-red);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Filter button */
+#filterBtn {
+    padding: 10px 14px;
+    background-color: var(--color-bg-table);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#filterBtn:hover { background-color: #3a3f5f; }
+
+/* ============================ */
+/* ===== Filter Modal ===== */
+/* ============================ */
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px 20px;
+    margin-top: 20px;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.filter-item label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d0d0ff;
+    margin-bottom: 6px;
+}
+
+.filter-item select,
+.filter-item input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #3b3f52;
+    border-radius: 4px;
+    background-color: var(--color-bg-table);
+    color: #fff;
+    outline: none;
+    box-sizing: border-box;
+    transition: all 0.2s ease;
+}
+
+.filter-item select:hover { border-color: var(--color-purple); }
+
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.apply-btn {
+    background-color: var(--color-purple);
+    color: #fff;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.apply-btn:hover { filter: brightness(1.2); }
+
+.cancel-btn {
+    background-color: #3b3f52;
+    color: #fff;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cancel-btn:hover { filter: brightness(1.2); }
+
+/* ============================ */
+/* ===== Responsive ===== */
+/* ============================ */
+@media (max-width: 600px) {
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Hide scrollbar in WebKit browsers (Chrome, Safari, Edge) */
+div::-webkit-scrollbar {
+    display: none;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* centers items horizontally */
+    gap: 8px;
+    max-width: 600px;
+    margin: 0 auto 20px auto;
+}
+
+.search-bar input {
+    width: 200px; /* fixed size so it doesn’t stretch */
+}
+
+.search-bar button {
+    white-space: nowrap;
+}

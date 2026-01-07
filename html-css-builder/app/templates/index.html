@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS Builder - Like Wix</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>📦 File Upload</h2>
+        
+        <div class="file-section">
+            <label>HTML File</label>
+            <div class="file-input" id="htmlDropZone">
+                <input type="file" id="htmlFile" accept=".html" />
+                <span>📄 Click to select HTML</span>
+                <span class="file-name" id="htmlFileName"></span>
+            </div>
+        </div>
+
+        <div class="file-section">
+            <label>CSS Files (up to 3)</label>
+            <div class="css-files-container">
+                <div class="file-input" id="css1DropZone">
+                    <input type="file" id="cssFile1" accept=".css" />
+                    <span>🎨 CSS File 1</span>
+                    <span class="file-name" id="cssFileName1"></span>
+                </div>
+            </div>
+            <div class="css-files-container" style="margin-top: 10px;">
+                <div class="file-input" id="css2DropZone">
+                    <input type="file" id="cssFile2" accept=".css" />
+                    <span>🎨 CSS File 2</span>
+                    <span class="file-name" id="cssFileName2"></span>
+                </div>
+            </div>
+            <div class="css-files-container" style="margin-top: 10px;">
+                <div class="file-input" id="css3DropZone">
+                    <input type="file" id="cssFile3" accept=".css" />
+                    <span>🎨 CSS File 3</span>
+                    <span class="file-name" id="cssFileName3"></span>
+                </div>
+            </div>
+        </div>
+
+        <button class="upload-btn" id="uploadBtn">Upload & Preview</button>
+        <hr style="margin:18px 0;">
+        <div class="inspector">
+            <h2>🧭 Inspector</h2>
+            <div>
+                <strong>Selected:</strong>
+                <div id="selectedInfo">None</div>
+            </div>
+            <div style="margin-top:10px;">
+                <label style="font-size:12px;">Text</label>
+                <textarea id="inspectorText" rows="2" style="width:100%;"></textarea>
+            </div>
+            <div style="margin-top:8px;">
+                <label style="font-size:12px;">Inner HTML</label>
+                <textarea id="inspectorHTML" rows="4" style="width:100%;"></textarea>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:8px;align-items:center;">
+                <div style="flex:1;">
+                    <label style="font-size:12px;display:block;">Color</label>
+                    <input type="color" id="inspectorColor">
+                </div>
+                <div style="flex:1;">
+                    <label style="font-size:12px;display:block;">Background</label>
+                    <input type="color" id="inspectorBg">
+                </div>
+            </div>
+            <button class="upload-btn" id="applyBtn" style="margin-top:10px;">Apply Changes</button>
+
+            <hr style="margin:12px 0;">
+            <div>
+                <label style="font-size:12px;display:block;">Inject JS into preview</label>
+                <textarea id="injectJs" rows="6" style="width:100%;" placeholder="// Example: document.querySelector('h1').textContent = 'Hi';"></textarea>
+                <button class="upload-btn" id="injectBtn" style="margin-top:8px;">Run JS</button>
+            </div>
+
+            <hr style="margin:12px 0;">
+            <button class="upload-btn" id="exportBtn">Export Modified Site</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="toolbar">
+            <h1>Preview</h1>
+            <span class="preview-info">Drag elements to move • Use corners to resize</span>
+        </div>
+        <div class="preview-container">
+            <iframe id="previewFrame" class="preview-frame" title="Preview"></iframe>
+        </div>
+    </div>
+
+    <div class="status-message" id="statusMessage"></div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

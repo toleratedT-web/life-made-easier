@@ -1,0 +1,18 @@
+/* ========================================================= */
+/* ================= User Colours ============== */
+/* ========================================================= */
+
+:root {
+    --color-bg-dark: #1b1b2f;
+    --color-bg-sidebar: #1e1e3f;
+    --color-bg-table: #2a2f4a;
+    --color-bg-modal: #1f243b;
+    --color-purple: #7b1fa2;
+    --color-light-purple: #d39fff;
+    --color-teal: #009688;
+    --color-green: #43a047;
+    --color-orange: #f57c00;
+    --color-text: #e0e0e0;
+    --color-text-light: #f2e6ff;
+    --color-accent-red: #ff6b6b;
+}

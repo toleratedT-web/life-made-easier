@@ -1,0 +1,91 @@
+/* ============================ */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text);
+}
+
+/* ============================ */
+/* ===== Top Ribbon ===== */
+/* ============================ */
+.top-ribbon {
+    width: 100%;
+    background-color: #121529;
+    color: #fff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.top-ribbon h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* ============================ */
+/* ===== Layout ===== */
+/* ============================ */
+.layout {
+    display: flex;
+    margin-top: 60px; /* space for ribbon */
+}
+
+/* ============================ */
+/* ===== Sidebar ===== */
+/* ============================ */
+.sidebar {
+    width: 200px;
+    height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    background-color: var(--color-bg-sidebar);
+}
+
+.nav-btn {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+    color: #fff;
+    margin-bottom: 5px;
+    border: none;
+    border-radius: 0;
+    transition: all 0.2s ease;
+}
+
+/* Sidebar button colors */
+.nav-btn.users { background-color: var(--color-purple); }
+.nav-btn.groups { background-color: var(--color-teal); }
+.nav-btn.placeholder1 { background-color: var(--color-green); }
+.nav-btn.placeholder2 { background-color: var(--color-orange); }
+
+/* Active / Hover */
+.nav-btn.active { filter: brightness(0.7); }
+.nav-btn:hover { filter: brightness(1.2); }
+
+/* ============================ */
+/* ===== Main Content ===== */
+/* ============================ */
+.main-content {
+    flex: 1;
+    padding: 20px 40px;
+}
+
+
+/* ============================ */
+/* ===== Animations ===== */
+/* ============================ */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+

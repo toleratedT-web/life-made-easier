@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>HeadAche</title>
+    
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/user.css">
+    <link rel="stylesheet" href="styles/user_colours.css">
+</head>
+
+<body>
+
+<header class="top-ribbon">
+    <h1>HeadAche</h1>
+</header>
+
+<div class="layout">
+    <nav class="sidebar">
+        <button class="nav-btn users active" onclick="resetAndLoadUsers()">Users</button>
+        <button class="nav-btn groups" onclick="alert('Groups page coming soon')">Groups</button>
+        <button class="nav-btn placeholder1" onclick="alert('Placeholder 1')">Placeholder 1</button>
+        <button class="nav-btn placeholder2" onclick="alert('Placeholder 2')">Placeholder 2</button>
+    </nav>
+
+    <main class="main-content">
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search users...">
+            <button id="filterBtn" onclick="openFilterModal()">Filters</button>
+        </div>
+        <div id="noResults">No users found.</div>
+
+        <!-- Fixed table header at top of screen -->
+        <!-- Scrollable container -->
+
+        <div class = tableContainer>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 0;">
+                <thead>
+                    <tr>
+                        <th>Login</th>
+                        <th>Forename</th>
+                        <th>Surname</th>
+                        <th>Mailname</th>
+                    </tr>
+                </thead>
+            </table>
+
+            <!-- Scrollable body -->
+            <div id="tableBodyContainer" style="max-height: 400px; overflow-y: auto; scrollbar-width: none; -ms-overflow-style: none; margin: 0; padding: 0;">
+                <table id="usersTable" style="width: 100%; border-collapse: collapse; margin: 0; padding: 0;">
+                    <tbody>
+                        <!-- dynamic rows injected by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="loadingIndicator" style="display: none;">Loading...</div>
+        <div id="endOfData" style="display: none;">End of user list.</div>
+       
+        
+    </main>
+</div>
+
+<!-- User Detail Modal -->
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeModal()">Close</button>
+        <h2 id="popupName"></h2>
+        <table class="details-table" id="detailsTable"></table>
+    </div>
+</div>
+
+<!-- Filter Modal -->
+<div id="filterModal" class="modal">
+    <div class="modal-content">
+        <button class="close-btn" onclick="closeFilterModal()">Close</button>
+        <h2>Filter Users</h2>
+        <div class="filter-grid">
+            <div class="filter-item">
+                <label>Status</label>
+                <select id="statusFilter"><option value="">Any</option></select>
+            </div>
+            <div class="filter-item">
+                <label>Active</label>
+                <select id="activeFilter">
+                    <option value="">Any</option>
+                    <option value="enabled">Enabled</option>
+                    <option value="disabled">Disabled</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Access Level</label>
+                <select id="accessLevelFilter"><option value="">Any</option></select>
+            </div>
+            <div class="filter-item">
+                <label>Department</label>
+                <select id="deptFilter"><option value="">Any</option></select>
+            </div>
+            <div class="filter-item">
+                <label>Has Email</label>
+                <select id="hasMailFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+
+            <!-- Boolean flags -->
+            <div class="filter-item">
+                <label>Is Staff</label>
+                <select id="isStaffFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Is Student</label>
+                <select id="isStudentFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Is Enrolling Student</label>
+                <select id="isEnrollingFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>MDS Flag</label>
+                <select id="mdsFlagFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Exchange Flag</label>
+                <select id="exchFlagFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>GAL Flag</label>
+                <select id="galFlagFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Hamilton</label>
+                <select id="hamiltonFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Active Directory</label>
+                <select id="adFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="filter-item">
+                <label>Provision Home Dir</label>
+                <select id="provHomeFilter">
+                    <option value="">Any</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+        </div>
+        <div class="filter-actions">
+            <button class="apply-btn" onclick="applyFilters()">Apply</button>
+            <button class="cancel-btn" onclick="closeFilterModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script src="scripts/user_page.js"></script>
+</body>
+</html>
